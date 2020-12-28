@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}商品上架{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/shelf.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h3 class="page-title">商品上架</h3>
+    <form action="" method="post">
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" placeholder="请输入商品名称" name="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="请输入商品价格" name="price" class="form-control">
+            </div>
+            <div class="form-group">
+                <textarea name="content" rows="5" placeholder="商品介绍" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">上架</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

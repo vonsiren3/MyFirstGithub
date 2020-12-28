@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}浏览记录{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block main %}
+
+<center>{% print('用户名:  %s'%user.username) %}</center>
+<center>{% print('用户手机号:  %s'%user.telephone) %}</center>
+    <hr>
+    <hr>
+    <center style="color:darkblue;font-weight:bold">浏览记录</center>
+    <hr>
+    <hr>
+    {% for record in records %}
+      <center><a href="">{% print(record) %}</a><hr></center>
+    {% endfor %}
+
+{% endblock %}

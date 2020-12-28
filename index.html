@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block main %}
+<ul class="good-list-group">
+{% for good in goods %}
+
+<li>
+    <div class="avatar-group">
+        <img src="{{ url_for('static',filename='images/txtx.png') }}" alt="" class="avatar">
+    </div>
+    <div class="good-group">
+        <p class="good-title"><a href="{{ url_for('detail',good_id=good.id) }}">{{ good.title }}</a></p>
+        <p class="good-content">{{ good.content }}</p>
+        <div class="good-info">
+            <span class="good-author">{{ good.author.username }}</span>
+            <span class="good-price">￥{{ good.price }}</span>
+            <span class="good-time">{{ good.create_time }}</span>
+        </div>
+    </div>
+</li>
+{% endfor %}
+
+</ul>
+{% endblock %}

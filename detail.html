@@ -1,0 +1,68 @@
+{% extends'base.html' %}
+
+{% block title %}详情{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block main %}
+<h3 class="page-title">{{ good.title }}</h3>
+    <p class="good-info">
+    <span>卖家：{{ good.author.username }}</span>
+    <span>价格：{{ good.price }}</span>
+    <span>上架时间：{{ good.create_time }}</span>
+    </p>
+    <hr>
+    <p class="good-content">{{ good.content }}</p>
+    <hr>
+    <form action="{{ url_for('car') }}" method="post">
+        <input type="hidden" name="title2" value="{{ good.title }}">
+        <input type="hidden" name="price2" value="{{ good.price }}">
+        <input type="hidden" name="good_id2" value="{{ good.id }}">
+        <button class="btn btn-primary">添加购物车</button>
+    </form>
+
+{#     {% if flag==1 %}#}
+{#         <form action="{{ url_for('car') }}" method="post">#}
+{#                <input type="hidden" name="title2" value="{{ good.title }}">#}
+{#                <input type="hidden" name="price2" value="{{ good.price }}">#}
+{#                <input type="hidden" name="good_id2" value="{{ good.id }}">#}
+{#                <button class="btn btn-primary">已加入购物车</button>#}
+{#        </form>#}
+{#    {% endif %}#}
+{##}
+{#    {% if flag==2 %}#}
+{#     <form action="{{ url_for('car') }}" method="post">#}
+{#                <input type="hidden" name="title2" value="{{ good.title }}">#}
+{#                <input type="hidden" name="price2" value="{{ good.price }}">#}
+{#                <input type="hidden" name="good_id2" value="{{ good.id }}">#}
+{#                <button class="btn btn-primary">加入购物车</button>#}
+{#        </form>#}
+{#    {% endif %}#}
+
+    <hr>
+
+    <h4 class="comment-group-title">评论（{{ good.comments|length }}）</h4>
+    <form action="{{ url_for('add_comment') }}" method="post">
+    <div class="form-group">
+        <input name="comment_content" type="text" class="form-control" placeholder="评论商品">
+        <input type="hidden" name="good_id" value="{{ good.id }}">
+    </div>
+    <div class="form-group" style="text-align: right;">
+        <button class="btn btn-primary">发表评论</button>
+    </div>
+    </form>
+
+    <ul class="comment-group">
+        {% for comment in good.comments %}
+            <li>
+                <div class="user-info">
+                    <img class="avatar" src="{{ url_for('static',filename='images/txtx.png') }}" alt="">
+                    <span class="username" style="color:darkblue;">{{ comment.author.username }}</span>
+                    <span class="create-time">{{ comment.create_time }} 发表了评论</span>
+                </div>
+                <p class="comment-content">{{ comment.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

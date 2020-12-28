@@ -1,0 +1,20 @@
+{% extends'base.html' %}
+
+{% block title %}购物车{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/car.css') }}">
+{% endblock %}
+
+{% block main %}
+
+<center>{% print('用户名:  %s'%user.username) %}</center>
+<center>{% print('用户手机号:  %s'%user.telephone) %}</center>
+    <hr>
+    <hr>
+    <center style="color:darkblue;font-weight:bold">购物车列表</center>
+    <hr>
+    <hr>
+    {% for car in cars %}
+      <center><a href="{{ url_for('detail',good_id=6) }}">{% print(car) %}</a><hr></center>
+    {% endfor %}
+{% endblock %}
